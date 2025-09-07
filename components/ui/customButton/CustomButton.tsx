@@ -11,7 +11,7 @@ import {
   PressableProps,
 } from 'react-native';
 import React from 'react';
-import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 
 interface ButtonProps extends PressableProps {
@@ -51,20 +51,20 @@ export default function CustomButton({
       onPress={onPress}
       style={[
         styles.container,
-        containerStyle,
         {
           backgroundColor: theme.color.primaryContainer,
           borderColor: theme.color.onPrimary,
           shadowColor: theme.color.onPrimary,
         },
+        containerStyle,
       ]}>
       {loading ? (
         <ActivityIndicator style={[styles.indicator]} />
       ) : (
         <>
           {leftIcon ? (
-            <MaterialIcons
-              title={leftIcon}
+            <FontAwesome
+              name={leftIcon}
               style={[styles.leftIcon, iconLeftStyle]}
             />
           ) : null}
@@ -72,8 +72,8 @@ export default function CustomButton({
             {title}
           </Text>
           {rightIcon ? (
-            <MaterialIcons
-              title={rightIcon}
+            <FontAwesome
+              name={rightIcon}
               style={[styles.rightIcon, iconRightStyle]}
             />
           ) : null}

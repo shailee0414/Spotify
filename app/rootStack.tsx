@@ -10,20 +10,33 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '@/screens/Home';
 import Profile from '@/screens/Profile';
 import Tabs from './(tabs)/Tabs';
+import AuthScreen from '@/screens/Login/AuthScreen';
 const Stack = createNativeStackNavigator();
+
 function RootStack() {
+  const [isLLoggedIn, setIsLoggedIn] = React.useState(false);
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        component={Tabs}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{ headerShown: false }}
-      />
+      {!isLLoggedIn ? (
+        <Stack.Screen
+          name="Auth"
+          component={AuthScreen}
+          options={{ headerShown: false }}
+        />
+      ) : (
+        <>
+          <Stack.Screen
+            name="Home"
+            component={Tabs}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
+            options={{ headerShown: false }}
+          />
+        </>
+      )}
     </Stack.Navigator>
   );
 }
