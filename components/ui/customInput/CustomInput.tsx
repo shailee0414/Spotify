@@ -110,7 +110,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#00000000',
   },
-  indicator: {},
 
   leftIcon: {
     fontSize: 16,

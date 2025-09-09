@@ -1,10 +1,7 @@
 import {
   StyleSheet,
   Text,
-  View,
-  TouchableOpacity,
   ActivityIndicator,
-  StyleProp,
   ViewStyle,
   TextStyle,
   Pressable,

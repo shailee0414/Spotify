@@ -1,37 +1,32 @@
-import * as React from 'react';
-import { View, Text } from 'react-native';
-import {
-  createStaticNavigation,
-  useNavigation,
-} from '@react-navigation/native';
+import React, { useState } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Button } from '@react-navigation/elements';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '@/screens/Home';
+
 import Profile from '@/screens/Profile';
 import Tabs from './(tabs)/Tabs';
 import AuthScreen from '@/screens/Login/AuthScreen';
+import screenName from '@/constants/screens/screenName.json';
+
 const Stack = createNativeStackNavigator();
 
 function RootStack() {
-  const [isLLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <Stack.Navigator>
-      {!isLLoggedIn ? (
+      {!isLoggedIn ? (
         <Stack.Screen
-          name="Auth"
+          name={screenName.Auth.title}
           component={AuthScreen}
           options={{ headerShown: false }}
         />
       ) : (
         <>
           <Stack.Screen
-            name="Home"
+            name={screenName.Home.title}
             component={Tabs}
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="Profile"
+            name={screenName.Profile.title}
             component={Profile}
             options={{ headerShown: false }}
           />

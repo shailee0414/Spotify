@@ -1,11 +1,4 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import {
-  createStaticNavigation,
-  useNavigation,
-} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Button } from '@react-navigation/elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '@/screens/Home';
 import Profile from '@/screens/Profile';

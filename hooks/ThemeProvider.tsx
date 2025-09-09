@@ -1,32 +1,27 @@
-import {createContext, PropsWithChildren, useContext, useState} from "react";
-import {useColorScheme} from "@/hooks/useColorScheme";
-import flavorTypes from "@/constants/style/flavor";
-import {dark, Theme} from "@/constants/style/dark";
-import {light} from "@/constants/style/light";
+import { createContext, PropsWithChildren, useState } from 'react';
+import { useColorScheme } from '@/hooks/useColorScheme';
+import flavorTypes from '@/constants/style/flavor';
+import { dark, Theme } from '@/constants/style/dark';
+import { light } from '@/constants/style/light';
 
 const initialValue = {
-  flavor: flavorTypes.DARK,
   theme: dark,
   toggleTheme: () => {},
 };
 
 type ContextType = {
-  flavor: string;
   theme: Theme;
   toggleTheme: (theme: string) => void;
 };
 
 const ThemeContext = createContext<ContextType>(initialValue);
 
-const ThemeProvider = ({children}: PropsWithChildren<{}>) => {
-  const isThemeDark = useColorScheme() ?? "dark";
-  const [flavor, setFlavor] = useState(
-    isThemeDark ? flavorTypes?.DARK : flavorTypes?.DARK
-  );
-  const [theme, setTheme] = useState(isThemeDark ? dark : dark);
+const ThemeProvider = ({ children }: PropsWithChildren<{}>) => {
+  const isThemeDark = useColorScheme() ?? 'dark';
 
-  const toggleTheme = (flavorParam:string) => {
-    setFlavor(flavorParam);
+  const [theme, setTheme] = useState(isThemeDark ? dark : dark);
+  console.log('isThemeDark', theme);
+  const toggleTheme = (flavorParam: string) => {
     let selectedFlavor;
     switch (flavorParam) {
       case flavorTypes.DARK:
@@ -45,13 +40,11 @@ const ThemeProvider = ({children}: PropsWithChildren<{}>) => {
     <ThemeContext.Provider
       value={{
         theme,
-        flavor,
         toggleTheme,
-      }}
-    >
+      }}>
       {children}
     </ThemeContext.Provider>
   );
 };
 
-export {ThemeContext, ThemeProvider};
+export { ThemeContext, ThemeProvider };

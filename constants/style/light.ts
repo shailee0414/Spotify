@@ -1,11 +1,9 @@
-import { palette } from './palette';
 import { spacing } from './spacing';
 import { fontFamily } from './fontFamily';
 import { fontSize } from './fontSize';
 import { borderRadii } from './borderRadii';
 import { fontWeight } from './fontWeight';
-
-const GOLDEN_RATIO = 1.62;
+import { FONT_SIZE_LINE_HEIGHT_RATIOS } from './lineHeight';
 
 const light = {
   theme: 'light',
@@ -18,24 +16,24 @@ const light = {
     fs28Bold: {
       fontWeight: fontWeight.bold,
       fontSize: fontSize.fs28,
-      lineHeight: fontSize.fs34 * GOLDEN_RATIO,
+      lineHeight: fontSize.fs28 * FONT_SIZE_LINE_HEIGHT_RATIOS.MEDIUM,
       fontFamily: fontFamily.primary.regular,
     },
     fs20Bold: {
       fontSize: fontSize.fs20,
-      lineHeight: fontSize.fs20 * GOLDEN_RATIO,
+      lineHeight: fontSize.fs20 * FONT_SIZE_LINE_HEIGHT_RATIOS.MEDIUM,
       fontFamily: fontFamily.primary.regular,
       fontWeight: fontWeight.bold,
     },
     fs16Bold: {
       fontSize: fontSize.fs16,
-      lineHeight: fontSize.fs16 * GOLDEN_RATIO,
+      lineHeight: fontSize.fs16 * FONT_SIZE_LINE_HEIGHT_RATIOS.SMALL,
       fontFamily: fontFamily.primary.regular,
       fontWeight: fontWeight.bold,
     },
     fs8Semi: {
       fontSize: fontSize.fs8,
-      lineHeight: fontSize.fs8 * GOLDEN_RATIO,
+      lineHeight: fontSize.fs8 * FONT_SIZE_LINE_HEIGHT_RATIOS.XSMALL,
       fontFamily: fontFamily.primary.regular,
       fontWeight: fontWeight.semiBold,
     },
