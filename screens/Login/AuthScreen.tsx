@@ -3,6 +3,8 @@ import React from 'react';
 import { useTheme } from '@/hooks/useTheme';
 import { FontAwesome } from '@expo/vector-icons';
 import CustomButton from '@/components/ui/customButton/CustomButton';
+import authScreen from '@/constants/screens/authScreen.json';
+import { dark } from '@/constants/style/dark';
 
 const AuthScreen = () => {
   const { theme } = useTheme();
@@ -14,10 +16,7 @@ const AuthScreen = () => {
         { backgroundColor: theme.color.onPrimary },
       ]}>
       <View style={[styles.container]}>
-        <Image
-          style={[styles.image]}
-          source={require('../../assets/images/auth.png')}
-        />
+        <Image source={require('../../assets/images/auth.png')} />
         <View>
           <FontAwesome
             name="spotify"
@@ -28,97 +27,44 @@ const AuthScreen = () => {
         <Text
           style={{
             color: theme.color.primaryText,
-            fontSize: theme.fontSize.fs28,
-            fontWeight: theme.fontWeight.bold,
-            marginTop: theme.spacing.sp12,
-            textAlign: 'center',
+            ...styles.containerTitle,
           }}>
           Millions of songs. {'\n'}
           Free on Spotify.
         </Text>
-        <CustomButton
-          title="Sign up Free"
-          onPress={() => {}}
-          containerStyle={{
-            marginTop: theme.spacing.sp12,
-            backgroundColor: theme.color.tertiary,
-            width: '90%',
-            borderRadius: theme.borderRadii.br45,
-          }}
-          titleStyle={{
-            color: theme.color.onPrimary,
-            fontSize: theme.fontSize.fs16,
-            fontWeight: theme.fontWeight.bold,
-          }}
-        />
-        <CustomButton
-          title="Continue with Google"
-          onPress={() => {}}
-          containerStyle={{
-            paddingHorizontal: theme.spacing.sp16,
-            marginTop: theme.spacing.sp8,
-            backgroundColor: theme.color.onPrimary,
-            width: '90%',
-            borderRadius: theme.borderRadii.br45,
-            borderWidth: 2,
-            borderColor: theme.color.primaryText,
-            alignItems: 'flex-start',
-            justifyContent: 'flex-start',
-            gap: 80,
-          }}
-          titleStyle={{ color: theme.color.primaryText, fontSize: 16 }}
-          leftIcon="google"
-          iconLeftStyle={{ color: theme.color.primaryText, fontSize: 24 }}
-        />
-        <CustomButton
-          title="Continue with Facebook"
-          onPress={() => {}}
-          containerStyle={{
-            paddingHorizontal: theme.spacing.sp16,
-            marginTop: theme.spacing.sp8,
-            backgroundColor: theme.color.onPrimary,
-            width: '90%',
-            borderRadius: theme.borderRadii.br45,
-            borderWidth: 2,
-            borderColor: theme.color.primaryText,
-            alignItems: 'flex-start',
-            justifyContent: 'flex-start',
-            gap: 80,
-          }}
-          titleStyle={{ color: theme.color.primaryText, fontSize: 16 }}
-          leftIcon="facebook"
-          iconLeftStyle={{ color: theme.color.primaryText, fontSize: 24 }}
-        />
-        <CustomButton
-          title="Continue with Apple"
-          onPress={() => {}}
-          containerStyle={{
-            paddingHorizontal: theme.spacing.sp16,
-            marginTop: theme.spacing.sp8,
-            backgroundColor: theme.color.onPrimary,
-            width: '90%',
-            borderRadius: theme.borderRadii.br45,
-            borderWidth: 2,
-            borderColor: theme.color.primaryText,
-            alignItems: 'flex-start',
-            justifyContent: 'flex-start',
-            gap: 80,
-          }}
-          titleStyle={{ color: theme.color.primaryText, fontSize: 16 }}
-          leftIcon="apple"
-          iconLeftStyle={{ color: theme.color.primaryText, fontSize: 24 }}
-        />
-        <CustomButton
-          title="Log In"
-          onPress={() => {}}
-          containerStyle={{
-            paddingHorizontal: theme.spacing.sp16,
-            marginTop: theme.spacing.sp8,
-            backgroundColor: theme.color.onPrimary,
-            width: '90%',
-          }}
-          titleStyle={{ color: theme.color.primaryText, fontSize: 16 }}
-        />
+        {authScreen.map((item) => {
+          return (
+            <CustomButton
+              key={item.id}
+              title={item.text}
+              onPress={() => {}}
+              containerStyle={{
+                ...styles.baseButton,
+                backgroundColor:
+                  item?.id === 'signUp'
+                    ? theme.color.tertiary
+                    : theme.color.onPrimary,
+                borderColor: item?.id?.includes('continueWith')
+                  ? theme.color.primaryText
+                  : 'transparent',
+                ...(item?.id?.includes('continueWith')
+                  ? styles.socialButton
+                  : {}),
+              }}
+              leftIcon={item.icon ?? undefined}
+              iconLeftStyle={{
+                ...styles.leftIcon,
+                color: theme.color.primaryText,
+              }}
+              titleStyle={{
+                color:
+                  item?.id === 'signUp'
+                    ? theme.color.onPrimary
+                    : theme.color.primaryText,
+              }}
+            />
+          );
+        })}
       </View>
     </ScrollView>
   );
@@ -135,5 +81,35 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  image: {},
+  containerTitle: {
+    fontSize: dark.fontSize.fs28,
+    fontWeight: dark.fontWeight.bold,
+    marginTop: dark.spacing.sp12,
+    textAlign: 'center',
+  },
+
+  baseButton: {
+    marginTop: dark.spacing.sp12,
+    width: '90%',
+    borderRadius: dark.borderRadii.br45,
+  },
+
+  leftIcon: {
+    marginRight: dark.spacing.sp8,
+    fontSize: dark.fontSize.fs24,
+  },
+
+  socialButton: {
+    paddingHorizontal: 16,
+    marginTop: 8,
+    borderWidth: 2,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    gap: 80,
+  },
+
+  baseTitle: {
+    fontSize: dark.fontSize.fs16,
+    fontWeight: dark.fontWeight.bold,
+  },
 });
