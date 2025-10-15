@@ -10,53 +10,84 @@ import {
   TextInput,
   TextInputProps,
 } from 'react-native';
-import React from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 
-import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
+import { spacing } from '@/constants/style/spacing';
 
-interface InputProps extends TextInputProps {
-  title?: string;
-  titleStyle?: TextStyle;
-  bottomText?: string;
-  bottomTextStyle?: TextStyle;
+export interface InputProps extends TextInputProps {
+  label?: string;
+  labelStyle?: TextStyle;
   rightIcon?: string;
   rightIconStyle?: TextStyle;
   leftIcon?: string;
   leftIconStyle?: TextStyle;
   iconPosition?: 'left' | 'right';
   containerStyle?: TextStyle;
+  ref?: React.Ref<CustomInputMethods>;
 }
 
-export default function CustomInput({
-  title,
-  titleStyle,
-  bottomText,
-  bottomTextStyle,
-  style,
-  value,
-  onChange,
-  rightIcon,
-  rightIconStyle,
-  leftIcon,
-  leftIconStyle,
-  iconPosition,
-  containerStyle,
-  placeholder,
-}: InputProps) {
+export interface CustomInputMethods {
+  setError: (errMsg: string) => void;
+  focus: () => void;
+  blur: () => void;
+  clear: () => void;
+}
+
+const CustomInput = forwardRef<CustomInputMethods, InputProps>((props, ref) => {
+  const { label,
+    labelStyle,
+    style,
+    value,
+    onChangeText,
+    rightIcon,
+    rightIconStyle,
+    leftIcon,
+    leftIconStyle,
+    iconPosition,
+    containerStyle,
+    placeholder
+  } = props
   const { theme } = useTheme();
+
+  const textInputRef = useRef<TextInput>(null)
+
+  const [error, setError] = useState<string>()
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      setError: (errMsg: string) => {
+        setError(errMsg)
+      },
+      focus: () => {
+        textInputRef?.current?.focus()
+      },
+      blur: () => {
+        textInputRef?.current?.blur()
+      },
+      clear: () => {
+        textInputRef?.current?.clear()
+      }
+
+    })
+  )
+
+
 
   return (
     <View style={[styles.container]}>
-      <Text style={[theme.textVariants.fs20Bold]}>{title}</Text>
+      <Text style={[theme.textVariants.fs20Bold, labelStyle]}>{label}</Text>
       <View
         style={[
           styles.inputContainer,
           { backgroundColor: theme.color.onPrimaryContainer },
+
         ]}>
         {leftIcon ? (
-          <MaterialIcons
-            title={leftIcon}
+          <FontAwesome
+            name={leftIcon}
             style={[
               styles.leftIcon,
               leftIconStyle,
@@ -66,11 +97,13 @@ export default function CustomInput({
           />
         ) : null}
         <TextInput
+          ref={textInputRef}
           placeholder={placeholder}
           value={value}
-          onChange={onChange}
+          onChangeText={onChangeText}
           placeholderTextColor={theme.color.secondaryText}
           selectionColor={theme.color.secondaryText}
+
           style={[
             styles.textInput,
             {
@@ -87,10 +120,12 @@ export default function CustomInput({
         ) : null}
       </View>
 
-      {bottomText ? <Text style={[bottomTextStyle]}>{bottomText}</Text> : <></>}
+      <Text style={[theme.textVariants.fs12PriReg, { color: theme.color.primaryText }]}>{error}</Text>
     </View>
   );
-}
+});
+
+export default CustomInput
 
 const styles = StyleSheet.create({
   container: {
@@ -113,6 +148,7 @@ const styles = StyleSheet.create({
 
   leftIcon: {
     fontSize: 16,
+    paddingHorizontal: spacing.sp4
   },
   rightIcon: {
     fontSize: 16,

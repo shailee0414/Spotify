@@ -6,7 +6,7 @@ import { light } from '@/constants/style/light';
 
 const initialValue = {
   theme: dark,
-  toggleTheme: () => {},
+  toggleTheme: () => { },
 };
 
 type ContextType = {
@@ -18,9 +18,8 @@ const ThemeContext = createContext<ContextType>(initialValue);
 
 const ThemeProvider = ({ children }: PropsWithChildren<{}>) => {
   const isThemeDark = useColorScheme() ?? 'dark';
-
   const [theme, setTheme] = useState(isThemeDark ? dark : dark);
-  console.log('isThemeDark', theme);
+
   const toggleTheme = (flavorParam: string) => {
     let selectedFlavor;
     switch (flavorParam) {

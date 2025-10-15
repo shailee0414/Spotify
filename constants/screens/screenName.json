@@ -14,5 +14,8 @@
   "Feed": {
     "title": "Feed",
     "description": "Discover new music and artists"
+  },
+  "SignUp": {
+    "title": "SignUp"
   }
 }

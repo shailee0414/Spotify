@@ -5,6 +5,7 @@ import { borderRadii } from './borderRadii';
 import { fontWeight } from './fontWeight';
 import { FONT_SIZE_LINE_HEIGHT_RATIOS } from './lineHeight';
 
+
 const light = {
   theme: 'light',
   spacing,
@@ -63,12 +64,12 @@ const light = {
     //   fontFamily: fontFamily.primary.regular,
     //   fontWeight: fontWeight.semiBold,
     // },
-    // fs12PriReg: {
-    //   fontSize: fontSize.fs12,
-    //   lineHeight: fontSize.fs12 * GOLDEN_RATIO,
-    //   fontFamily: fontFamily.primary.regular,
-    //   fontWeight: fontWeight.regular,
-    // },
+    fs12PriReg: {
+      fontSize: fontSize.fs12,
+      lineHeight: fontSize.fs12 * FONT_SIZE_LINE_HEIGHT_RATIOS.MEDIUM,
+      fontFamily: fontFamily.primary.regular,
+      fontWeight: fontWeight.regular,
+    },
     defaults: {
       // We can define a default text variant here.
     },

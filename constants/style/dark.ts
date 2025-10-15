@@ -15,7 +15,7 @@ const dark = {
     background: palette.c121212,
     surface: palette.c282828,
     onSurface: palette.cFFFFFF,
-    error: palette.cf5f3f0,
+    error: palette.cB3261E,
     onError: palette.cf5f3f0,
     border: palette.c777777,
     notification: palette.c1ED760,

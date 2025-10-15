@@ -6,6 +6,7 @@ const palette = {
   cFFFFFF: '#FFFFFF',
   c1ED760: '#1ED760',
   cf5f3f0: '#f5f3f0',
+  cB3261E: '#B3261E',
   cc9c8c5: '#c9c8c5',
 };
 

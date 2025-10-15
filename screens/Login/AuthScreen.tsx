@@ -1,13 +1,31 @@
 import { View, Text, ScrollView, Image, StyleSheet } from 'react-native';
+
 import React from 'react';
 import { useTheme } from '@/hooks/useTheme';
 import { FontAwesome } from '@expo/vector-icons';
-import CustomButton from '@/components/ui/customButton/CustomButton';
+import CustomButton from '@/components/ui/button/CustomButton';
 import authScreen from '@/constants/screens/authScreen.json';
 import { dark } from '@/constants/style/dark';
+import { SCREEN_NAMES } from '@/constants/navigation';
+import {
+  useNavigation
+} from '@react-navigation/native';
 
-const AuthScreen = () => {
+interface AuthScreenProps {
+  navigation?: any;
+}
+
+const AuthScreen = ({ navigation: propNavigation }: AuthScreenProps) => {
   const { theme } = useTheme();
+  const navigation = useNavigation();
+
+  const onSignUp = (): void => {
+    (navigation).navigate(SCREEN_NAMES.SIGNUP);
+  };
+
+  const continueWith = {
+    signUp: onSignUp,
+  };
 
   return (
     <ScrollView
@@ -37,7 +55,7 @@ const AuthScreen = () => {
             <CustomButton
               key={item.id}
               title={item.text}
-              onPress={() => {}}
+              onPress={continueWith[item.id]}
               containerStyle={{
                 ...styles.baseButton,
                 backgroundColor:
