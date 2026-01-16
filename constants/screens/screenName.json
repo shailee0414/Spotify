@@ -1,0 +1,21 @@
+{
+  "Auth": {
+    "title": "Authentication",
+    "description": "Login or sign up to access your account"
+  },
+  "Home": {
+    "title": "Home",
+    "description": "Your personalized feed of music"
+  },
+  "Profile": {
+    "title": "Profile",
+    "description": "Manage your account settings"
+  },
+  "Feed": {
+    "title": "Feed",
+    "description": "Discover new music and artists"
+  },
+  "SignUp": {
+    "title": "SignUp"
+  }
+}

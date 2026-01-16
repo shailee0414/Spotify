@@ -1,0 +1,27 @@
+[
+  {
+    "id": "signUp",
+    "text": "Sign up Free",
+    "icon": null
+  },
+  {
+    "id": "continueWithGoogle",
+    "text": "Continue with Google",
+    "icon": "google"
+  },
+  {
+    "id": "continueWithFacebook",
+    "text": "Continue with  Facebook",
+    "icon": "facebook"
+  },
+  {
+    "id": "continueWithApple",
+    "text": "Continue with  Apple",
+    "icon": "apple"
+  },
+  {
+    "id": "login",
+    "text": "Log in",
+    "icon": null
+  }
+]

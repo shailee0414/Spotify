@@ -1,0 +1,135 @@
+[
+  {
+    "type": "email",
+    "page": "",
+    "label": "What's your email?",
+    "placeholder": "Enter your email",
+    "buttonText": "Next",
+    "buttonValue": "password",
+    "onBackPress": "auth",
+    "value": null,
+    "error": {
+      "required": "Email is required.",
+      "invalid": "Please enter a valid email address."
+    },
+    "validation": [
+      {
+        "name": "required",
+        "regex": "^(?!\\s*$).+",
+        "errorMessage": "Email is required."
+      },
+      {
+        "name": "format",
+        "regex": "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
+        "errorMessage": "Please enter a valid email address (e.g. name@example.com)."
+      },
+      {
+        "name": "maxLength",
+        "regex": "^.{1,254}$",
+        "errorMessage": "Email is too long (maximum 254 characters)."
+      },
+      {
+        "name": "localPartLength",
+        "regex": "^[^@]{1,64}@",
+        "errorMessage": "The part before '@' is too long (maximum 64 characters)."
+      }
+    ],
+    "helperText": "You'll need to confirm this email later."
+  },
+  {
+    "type": "password",
+    "page": "Create account",
+    "label": "Create a password",
+    "placeholder": "Enter your password",
+    "buttonText": "Next",
+    "buttonValue": "gender",
+    "onBackPress": "email",
+    "value": null,
+    "error": {
+      "required": "Password is required.",
+      "minLength": "Password must be at least 8 characters.",
+      "weak": "Password is too weak."
+    },
+    "validation": [
+      {
+        "name": "required",
+        "regex": "^(?!\\s*$).+",
+        "errorMessage": "Password is required."
+      },
+      {
+        "name": "length",
+        "regex": "^.{8,16}$",
+        "errorMessage": "Password must be 8-16 characters long."
+      },
+      {
+        "name": "uppercase",
+        "regex": ".*[A-Z].*",
+        "errorMessage": "Password must contain at least one uppercase letter."
+      },
+      {
+        "name": "lowercase",
+        "regex": ".*[a-z].*",
+        "errorMessage": "Password must contain at least one lowercase letter."
+      },
+      {
+        "name": "digit",
+        "regex": ".*[0-9].*",
+        "errorMessage": "Password must contain at least one digit."
+      },
+      {
+        "name": "special",
+        "regex": ".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*",
+        "errorMessage": "Password must contain at least one special character."
+      }
+    ],
+    "helperText": "Use 8-16 characters with uppercase, lowercase, numbers, and special characters."
+  },
+  {
+    "type": "gender",
+    "page": "Create account",
+    "label": "What's your gender?",
+    "placeholder": "Select your gender",
+    "buttonText": "Next",
+    "buttonValue": "name",
+    "onBackPress": "password",
+    "value": null,
+    "error": {
+      "required": "Gender selection is required."
+    }
+  },
+  {
+    "type": "name",
+    "page": "Create account",
+    "label": "What's your name?",
+    "placeholder": "Enter your full name",
+    "buttonText": "Create an account",
+    "buttonValue": "",
+    "onBackPress": "name",
+    "value": null,
+    "error": {
+      "required": "Name is required.",
+      "invalid": "Please enter a valid name."
+    },
+    "validation": [
+      {
+        "name": "required",
+        "regex": "^(?!\\s*$).+",
+        "errorMessage": "Name is required."
+      },
+      {
+        "name": "format",
+        "regex": "^[a-zA-Z\\s]{2,50}$",
+        "errorMessage": "Please enter a valid name (2-50 characters, letters and spaces only)."
+      }
+    ],
+    "helperText": "This appears on your spotify account",
+    "terms": {
+      "heading": "By tapping “Create account”, you agree to the Spotify ",
+      "termsButtonText": "Terms of Use",
+      "privacy": "To learn more about how Spotify collects, uses, shares and protects your personal data, please read the Spotify ",
+      "privacyButtonText": "Privacy Policy",
+      "marketing": "Please send me news and offers from Spotify.",
+      "sharing": "Share my registration data with Spotify’s content providers for marketing purposes."
+    }
+  }
+]
